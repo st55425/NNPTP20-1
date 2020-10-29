@@ -16,7 +16,7 @@ namespace INPTPZ1
         public GraphScope WorldGraphScope { get; private set; }
         public Resolution TotalDots { get; private set; }
 
-        private NewtonIteration newtonIteration;
+        private NewtonIteration NewtonIteration;
 
 
         public FractalManager(Polynomial examinedFunction, GraphScope worldGraphScope, Resolution totalDots)
@@ -24,27 +24,27 @@ namespace INPTPZ1
             ExaminedFunction = examinedFunction;
             WorldGraphScope = worldGraphScope;
             TotalDots = totalDots;
-            newtonIteration = new NewtonIteration(examinedFunction);
+            NewtonIteration = new NewtonIteration(examinedFunction);
         }
 
         public FractalPoint ComputePoint(int xPosition, int yPosition)
         {
             Complex graphPosition = FindGraphPoint(xPosition, yPosition);
-            return newtonIteration.FindRoot(graphPosition);
+            return NewtonIteration.FindRoot(graphPosition);
 
         }
 
         public int GetRootNumber(Complex root)
         {
-            for (int i = 0; i < ExaminedFunction.FindedRoots.Count; i++)
+            for (int i = 0; i < ExaminedFunction.FoundRoots.Count; i++)
             {
-                if (RootEquals(root, ExaminedFunction.FindedRoots[i]))
+                if (RootEquals(root, ExaminedFunction.FoundRoots[i]))
                 {
                     return i;
                 }
             }
-            ExaminedFunction.FindedRoots.Add(root);
-            return ExaminedFunction.FindedRoots.Count;
+            ExaminedFunction.FoundRoots.Add(root);
+            return ExaminedFunction.FoundRoots.Count;
         }
 
         private bool RootEquals(Complex root1, Complex root2)

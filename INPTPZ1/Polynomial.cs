@@ -10,12 +10,12 @@ namespace INPTPZ1
         public class Polynomial
         {
             public List<Complex> Coefficients { get;private set; }
-            public List<Complex> FindedRoots { get;private set; }
+            public List<Complex> FoundRoots { get;private set; }
 
             public Polynomial()
             {
                 Coefficients = new List<Complex>();
-                FindedRoots = new List<Complex>();
+                FoundRoots = new List<Complex>();
             }
 
             public Polynomial Derive()

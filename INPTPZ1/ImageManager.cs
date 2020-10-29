@@ -15,12 +15,12 @@ namespace INPTPZ1
             };
 
         public Bitmap Image { get;private set; }
-        private FractalManager fractalManager;
+        private FractalManager FractalManager;
         private Resolution ImageResolution;
 
         public ImageManager(FractalManager fractalManager)
         {
-            this.fractalManager = fractalManager;
+            this.FractalManager = fractalManager;
             ImageResolution = fractalManager.TotalDots;
             Image = new Bitmap(ImageResolution.Width, ImageResolution.Height);
         }
@@ -43,8 +43,8 @@ namespace INPTPZ1
 
         private void ColorizePixel(int x, int y)
         {
-            FractalPoint fractalPoint = fractalManager.ComputePoint(x, y);
-            Color baseColor = BaseColors[fractalManager.GetRootNumber(fractalPoint.Root) % BaseColors.Length];
+            FractalPoint fractalPoint = FractalManager.ComputePoint(x, y);
+            Color baseColor = BaseColors[FractalManager.GetRootNumber(fractalPoint.Root) % BaseColors.Length];
             Color pixelColor = ResolveColor(baseColor, fractalPoint.IterationCount);
 
             Image.SetPixel(x, y, pixelColor);
